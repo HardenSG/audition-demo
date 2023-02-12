@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+
+    /* NOTE： 普通流围绕浮动盒 */
+    /* div img {
+        width: 80%;
+        float: left;
+    } */
+
+    /* NOTE： 多栏布局 */
+    /* body{
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+    }
+    .BFC{
+        height: 100%;
+    }
+    .BFC div{
+        height: 100%;
+    }
+    .left{
+        float: left;
+        width: 300px;
+        background-color: red;
+    }
+    .middle{
+        background-color: rgb(61, 165, 234);
+        overflow: auto;
+    }
+    .right{
+        float: right;
+        width: 300px;
+        background-color: rgb(47, 167, 17);
+    } */
+
+
+    /* NOTE: 消除margin塌陷 */
+    /* .far {
+        overflow: hidden;
+    }
+    .far div{
+        width: 200px;
+        height: 200px;
+        background-color: blue;
+        margin: 10px;
+    }
+    .son2 {
+        overflow: auto !important;
+    }
+    .grandSon{
+        width: 100px !important;
+        height: 100px !important;
+        background-color: yellow !important;
+    } */
+
+    /* NOTE: 双栏布局，实现方式多样 */
+    /* .far {
+        width: 100vw;
+        height: 100vh;
+    }
+    .left{
+        float: left;
+        width: 300px;
+        height: 100vh;
+        background-color: red;
+    }
+
+    .right{
+        height: 100vh;
+        overflow: auto;
+        background-color: aqua;
+    } */
+
+</style>
+<body>
+    <!-- NOTE: 普通流会环绕浮动盒 -->
+    <!-- <div>
+        <p>
+            定位技术允许我们将一个元素从它在页面的原始位置准确地移动到另外一个位置，有四种：静态定位，相对定位，绝对定位，固定定位。静态定位默认的定位方式（position 为 static），此时元素处于普通流中。相对定位
+相对定位通常用来对布局进行微调，position 为 relative 时，元素使用相对定位，此时可以通过 top，right，bottom，left 属性对元素的位置进行微调，设置其相对于自身的偏移量。绝对定位绝对定位方案中，盒会从普通流中移除，不会影响其他普通流的布局。绝对定位具有以下特点：元素的属性 position 为 absolute 或 fixed 时，它是绝对定位元素
+        </p>
+        <img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7adda9c7d0764629a6c8c48c2e8b8cd8~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.image" alt="">
+        <p>
+            定位技术允许我们将一个元素从它在页面的原始位置准确地移动到另外一个位置，有四种：静态定位，相对定位，绝对定位，固定定位。静态定位默认的定位方式（position 为 static），此时元素处于普通流中。相对定位
+相对定位通常用来对布局进行微调，position 为 relative 时，元素使用相对定位，此时可以通过 top，right，bottom，left 属性对元素的位置进行微调，设置其相对于自身的偏移量。绝对定位绝对定位方案中，盒会从普通流中移除，不会影响其他普通流的布局。绝对定位具有以下特点：元素的属性 position 为 absolute 或 fixed 时，它是绝对定位元素
+        </p>
+    </div> -->
+
+    <!-- NOTE: 自适应多栏布局 -->
+    <!-- 方法论：左浮动盒左margin与包含块的左border接触，右浮动恰好相反 -->
+    <!-- 那么有根据浮动盒不与BFC重叠，则可以设计出中间自适应的多栏布局 -->
+    <!-- <div class="BFC">
+        <div class="left"></div>
+        <div class="right"></div>
+        <div class="middle"></  div>
+    </div> -->
+    
+    <!-- NOTE： 解决外边距塌陷 -->
+    <!-- <div class="far">
+        <div class="son1"></div>
+        <div class="son2">
+            <div class="grandSon">1</div>
+        </div>
+    </div> -->
+
+    <!-- NOTE： 双栏布局 -->
+    <!-- <div class="far">
+        <div class="left"></div>
+        <div class="right"></div>
+    </div> -->
+    
+    <!-- NOTE: 圣杯布局 -->
+    <!-- <style>
+        #container {
+            padding-left: 200px;
+            padding-right: 150px;
+            overflow: auto;
+        }
+        #container p {
+            float: left;
+        }
+        .center {
+            width: 100%;
+            background-color: lightcoral;
+        }
+        .left {
+            width: 200px;
+            position: relative;
+            left: -200px;
+            margin-left: -100%;
+            background-color: lightcyan;
+        }
+        .right {
+            width: 150px;
+            margin-right: -150px;
+            background-color: lightgreen;
+        }
+        .clearfix:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+    </style>
+    <div id="container" class="clearfix">
+        <p class="center">我是中间</p>
+        <p class="left">我是左边</p>
+        <p class="right">我是右边</p>
+    </div> -->
+    
+
+    <!-- <style>
+        .far{
+            width: 100vw;
+            height: 100vh;
+        }
+        .left {
+            float: left;
+            width: 300px;
+            height: 100%;
+            background-color: red;
+        }
+
+        .right{
+            float: right;
+            width: 300px;
+            height: 100%;
+            background-color: aqua;
+        }
+
+        .middle{
+            width: auto;
+            min-width: 300px;
+            height: 100%;
+            background-color: aquamarine;
+            overflow: auto;
+        }
+    </style>
+    <div class="far">
+        <div class="left"></div>
+        <div class="right"></div>
+        <div class="middle"></div>
+    </div> -->
+
+
+    <!-- NOTE: 其他布局方式 -->
+    <!-- NOTE: 1. 垂直水平居中 -->
+    <!-- 1. left + top + translate -->
+    <!-- 2. 绝对定位 -->
+    <style>
+        /* NOTE: first methods */
+        /* div{
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            width: 200px;
+            height: 200px;
+            background-color: red;
+        } */
+
+        /* NOTE: second methods */
+        /* div{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 200px;
+            height: 200px;
+            margin-left: -100px;
+            margin-top: -100px;
+            background-color: red;
+        } */
+
+        /* NOTE: flex */
+        /* body{
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        div{
+            width: 200px;
+            height: 200px;
+            background-color: red;
+        } */
+    </style>
+    <!-- <div></div> -->
+
+
+    <!-- NOTE: grid -->
+    <!-- <style>
+        .far{
+            display: grid;
+            width: 200px;
+            height: 200px;
+            border: 2px solid red;
+        }
+
+        .child{
+            width: 50px;
+            height: 50px;
+            margin: auto;
+            background-color: aqua;
+        }
+    </style>
+    <div class="far">
+        <div class="child"></div>
+    </div> -->
+
+    <!-- NOTE: table-cell -->
+    <!-- <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            border: 1px solid red;
+            display: table-cell;
+            text-align: center;
+            vertical-align: middle;
+        }
+        .children-box {
+            background: yellow;
+            display: inline-block;
+        }
+
+    </style>
+    <div class="box">
+        <div class="children-box">111111</div>
+    </div> -->
+
+
+    <!-- NOTE: FLEX变异 -->
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            border: 1px solid red;
+            display: flex;
+        }
+        .children-box {
+            background: yellow;
+        }
+    </style>
+    <div class="box">
+        <div class="children-box">111111</div>
+    </div>
+</body>
+</html>

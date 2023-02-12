@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    div{
+        box-sizing: border-box;
+        width: 200px;
+        height: 100px;
+        background-color: #d01a1a;
+        margin: 0 auto;
+        transform: translateY(100%);
+    }
+</style>
+<body>
+    <div>1</div>
+    <ul></ul>
+    <script>
+        /** MARK: getComputedStyle\getBoundingClientRect
+         * const div = document.querySelector('div')
+         * const obj = window.getComputedStyle(div,null)
+         * console.log(obj['background-color']);
+         * console.log(div.getBoundingClientRect());
+        */
+       
+        const ul = document.querySelector('ul')
+        const fragment = document.createDocumentFragment()
+        Array(10).fill(0).forEach(() => {
+            fragment.appendChild(
+                (() => {
+                    const li = document.createElement('li')
+                    li.innerText = 'li'
+                    return li
+                })()
+            )
+        })
+        ul.appendChild(fragment)
+
+    </script>
+</body>
+</html>

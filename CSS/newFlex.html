@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        background-color: #f5f5d4;
+    }
+    /* NOTE: flex骰子布局 - middle - one */
+    /* .container{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
+        background-color: #e7e7e7;
+        width: 150px;
+        height: 150px;
+        padding: 15px;
+        transform: translate(-50%,-50%);
+        border-radius: 10px;
+        border: 1px solid #d6d4d4;
+        box-shadow: 0 0 20px rgb(252, 251, 251) inset;
+    } */
+
+    /* NOTE： 两个 */
+    /* .container{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        display: flex;
+        justify-content: space-between;
+        box-sizing: border-box;
+        background-color: #e7e7e7;
+        width: 150px;
+        height: 150px;
+        padding: 15px;
+        transform: translate(-50%,-50%);
+        border-radius: 10px;
+        border: 1px solid #d6d4d4;
+        box-shadow: 0 0 20px rgb(252, 251, 251) inset;
+    }
+    .item{
+        width: 20px;
+        height: 20px;
+        border-radius: 10px;
+        background-color: black;
+    }
+    .end{
+        align-self: flex-end;
+    } */
+
+    /* NOTE: 三个 */
+    /* .container{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        display: flex;
+        justify-content: space-between;
+        box-sizing: border-box;
+        background-color: #e7e7e7;
+        width: 150px;
+        height: 150px;
+        padding: 15px;
+        transform: translate(-50%,-50%);
+        border-radius: 10px;
+        border: 1px solid #d6d4d4;
+        box-shadow: 0 0 20px rgb(252, 251, 251) inset;
+    }
+    .item{
+        width: 20px;
+        height: 20px;
+        border-radius: 10px;
+        background-color: black;
+    }
+
+    .middle {
+        align-self: center;
+    }
+
+    .end{
+        align-self: flex-end;
+    } */
+
+    /* NOTE: 四个 */
+    .container{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: 2;
+        align-content: space-between;
+        box-sizing: border-box;
+        background-color: #e7e7e7;
+        width: 150px;
+        height: 150px;
+        padding: 15px;
+        transform: translate(-50%,-50%);
+        border-radius: 10px;
+        border: 1px solid #d6d4d4;
+        box-shadow: 0 0 20px rgb(252, 251, 251) inset;
+    }
+    .column {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .item{
+        width: 20px;
+        height: 20px;
+        border-radius: 10px;
+        background-color: black;
+    }
+</style>
+<body>
+    <div class="container">
+        <div class="column">
+            <div class="item"></div>
+            <div class="item"></div>
+        </div>
+        <div class="column">
+            <div class="item"></div>
+            <div class="item"></div>
+        </div>
+    </div>
+</body>
+</html>
