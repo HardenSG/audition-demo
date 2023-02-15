@@ -78,7 +78,10 @@ const demoObject = {
         d: 5
     },
     d: [1,{}],
-    e: new Map([['a',1]])
+    e: new Map([['a',1]]),
+    f: () => {
+        console.log(1);
+    }
 }
 demoObject.target = demoObject
 
