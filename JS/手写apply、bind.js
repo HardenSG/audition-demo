@@ -50,6 +50,19 @@ const Father = fn.demoBind(undefined,1)
 const ins = new Father(2)
 
 // console.log(fn.demoBind(undefined,1,2)());
-console.log(ins);
+// console.log(ins);
 
 // console.log(fn.demoApply(undefined,[1,2]));
+
+var color = 'blue'
+function b() {
+    console.log(this.color);
+}
+const obj = {
+    color: 'red',
+    a() {
+        console.log(this);
+        b.call(obj)
+    }
+}
+obj.a()
