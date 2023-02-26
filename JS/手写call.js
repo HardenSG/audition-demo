@@ -7,6 +7,8 @@ Function.prototype.demoCall = function (context) {
     }
     context = context || globalThis
     const fn = Symbol()
+
+    // this 指向调用者
     context[fn] = this
     const args = [...arguments].slice(1)
     const result = context[fn](...args)

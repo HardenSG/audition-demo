@@ -38,3 +38,12 @@ const ins = new SubClass()
 // function a () {} 
 // console.log(a.__proto__ === Function.prototype);
 // console.log(Function.prototype.__proto__ === Object.prototype);
+
+
+/**
+ *  原型链增强
+ */
+
+eval('console.log(this)')
+
+
