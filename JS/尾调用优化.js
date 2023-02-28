@@ -20,4 +20,4 @@
 //     }
 //     return factorial(b, a + b, n - 1)
 // }
-// console.log(fib(4));
+// console.log(fib(1000));
