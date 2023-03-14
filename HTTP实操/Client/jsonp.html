@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button>点击我发请求</button>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+      const oBtn = document.querySelector("button");
+      oBtn.addEventListener(
+        "click",
+        () => {
+          jsonp({
+            url: "http://localhost:8080/",
+            params: null,
+            callback: (data) => {
+              console.log(data);
+            },
+          }).then((res) => {
+            console.log(res);
+          });
+        },
+        false
+      );
+
+      function jsonp(url, params, callback) {
+        return new Promise((resolve, reject) => {
+          const script = document.createElement("script");
+          script.src = url + "&callback=" + callback;
+          document.body.appendChild(script);
+          window[callback] = (data) => {
+            resolve(data);
+            document.body.removeChild(script);
+          };
+        });
+      }
+    </script>
+  </body>
+</html>

@@ -51,7 +51,7 @@ const setProgress = (dom) => (v) => {
 
     while (currentSize < size) {
       const fileChunk = FILE.slice(currentSize, currentSize + CHUNK_SIZE);
-      console.log(fileChunk);
+
       const formData = createFormData({
         name,
         type,
@@ -71,6 +71,7 @@ const setProgress = (dom) => (v) => {
       currentSize += fileChunk.size
       setOProgress(currentSize);
     }
+
 
     setSpanInfo(UPLOAD_INFO.UPLOAD_SUCCESS);
     createVideo(uploadRes.data.path)
