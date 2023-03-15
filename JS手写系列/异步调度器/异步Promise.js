@@ -15,22 +15,38 @@
 //   "https://upyun.hokori.online/2021-11-29/1638160006-70194-linth2.png", // Project背景图
 // ];
 
-// const urls = [
-//   'http://127.0.0.1:8000?num=1',
-//   'http://127.0.0.1:8000?num=2',
-//   'http://127.0.0.1:8000?num=3',
-//   'http://127.0.0.1:8000?num=4',
-//   'http://127.0.0.1:8000?num=5',
-//   'http://127.0.0.1:8000?num=6',
-//   'http://127.0.0.1:8000?num=7',
-//   'http://127.0.0.1:8000?num=8'
-// ];
-
 const urls = [
-  'http://localhost:8000?num=1',
-  'http://localhost:8000?num=2',
-  'http://localhost:8000?num=3'
+  'http://127.0.0.1:8000?num=1',
+  'http://127.0.0.1:8000?num=2',
+  'http://127.0.0.1:8000?num=3',
+  'http://127.0.0.1:8000?num=4',
+  'http://127.0.0.1:8000?num=5',
+  'http://127.0.0.1:8000?num=6',
+  'http://127.0.0.1:8000?num=7',
+  'http://127.0.0.1:8000?num=8',
+  'http://127.0.0.1:8000?num=9',
+  'http://127.0.0.1:8000?num=10',
+  'http://127.0.0.1:8000?num=11',
+  'http://127.0.0.1:8000?num=12',
+  'http://127.0.0.1:8000?num=13',
+  'http://127.0.0.1:8000?num=14',
+  'http://127.0.0.1:8000?num=15',
+  'http://127.0.0.1:8000?num=16',
+  'http://127.0.0.1:8000?num=17',
+  'http://127.0.0.1:8000?num=18',
+  'http://127.0.0.1:8000?num=19',
+  'http://127.0.0.1:8000?num=20',
+  'http://127.0.0.1:8000?num=21',
+  'http://127.0.0.1:8000?num=22',
+  'http://127.0.0.1:8000?num=23',
+  'http://127.0.0.1:8000?num=24',
+  'http://127.0.0.1:8000?num=25',
+  'http://127.0.0.1:8000?num=26',
+  'http://127.0.0.1:8000?num=27',
+  'http://127.0.0.1:8000?num=28',
+  'http://127.0.0.1:8000?num=29',
 ];
+
 
 function generatorPromise(urls) {
   console.log(urls);
@@ -59,7 +75,7 @@ function handleCB(url) {
       method: 'GET',
       url
     }).then((res) => {
-      resolve(res)
+      resolve(res.data)
     })
   });
 }
@@ -78,7 +94,6 @@ class PromiseScheduler {
   isFullThrow = false; // boolean
   resPool = []; // any[]
   errorPool = []; // error[]
-  currentCursor = 0; // 当前所在的光标
   constructor(pool, limit, isFull) {
     this.requestPool = pool;
     this.limit = limit;
@@ -91,7 +106,6 @@ class PromiseScheduler {
       v()
         .then((res) => {
           this.resPool[i] = res;
-          this.currentCursor++;
           return i;
         })
         .catch((e) => {
@@ -109,16 +123,15 @@ class PromiseScheduler {
     return new Promise((resolve) => {
       this.requestPool
       .slice(this.limit, this.requestPool.length)
-      .reduce((c, r) => {
+      .reduce((c, r, index) => {
         return c
           .then(() => {
             return Promise.race(container);
           })
           .then((i) => {
-            const executor = r();
-            container[i] = executor;
-            executor.then((res) => {
-              this.resPool[i + this.currentCursor] = res;
+            container[i] = r().then((res) => {
+              // console.log(index);
+              this.resPool[index + this.limit] = res;
               return i;
             });
           })
