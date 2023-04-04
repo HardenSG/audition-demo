@@ -87,7 +87,7 @@ const requestPool = generatorPromise(urls);
  *  需要整体请求
  *  对于错误请求选择是否整体抛出还是遇见即抛出
  */
-const isPromise = (v) => typeof v === "object" && v instanceof Promise;
+const isPromise = (v) => v !== null && typeof v === "object" && v instanceof Promise;
 class PromiseScheduler {
   limit = 5; // number
   requestPool = []; // return: Promise

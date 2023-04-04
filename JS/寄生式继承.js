@@ -19,15 +19,18 @@ function CreateNewObject(o) {
 const basicData = {
     name: 'SG',
     age: 21,
-    job: 'Software Engineer'
+    job: 'Software Engineer',
+    guess: {
+        a: '1'
+    }
 }
 
 const o1 = CreateNewObject(basicData)
 const o2 = CreateNewObject(basicData)
 
 // False
-console.log(o1.sayHello === o2.sayHello)
-
+// console.log(o1.sayHello === o2.sayHello)
+// console.log(o1.guess === o2.guess);
 
 
 

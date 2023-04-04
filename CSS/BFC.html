@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<style>
-
+  </head>
+  <style>
     /* NOTE： 普通流围绕浮动盒 */
     /* div img {
         width: 80%;
@@ -40,7 +39,6 @@
         width: 300px;
         background-color: rgb(47, 167, 17);
     } */
-
 
     /* NOTE: 消除margin塌陷 */
     /* .far {
@@ -78,9 +76,8 @@
         overflow: auto;
         background-color: aqua;
     } */
-
-</style>
-<body>
+  </style>
+  <body>
     <!-- NOTE: 普通流会环绕浮动盒 -->
     <!-- <div>
         <p>
@@ -102,7 +99,7 @@
         <div class="right"></div>
         <div class="middle"></  div>
     </div> -->
-    
+
     <!-- NOTE： 解决外边距塌陷 -->
     <!-- <div class="far">
         <div class="son1"></div>
@@ -116,7 +113,7 @@
         <div class="left"></div>
         <div class="right"></div>
     </div> -->
-    
+
     <!-- NOTE: 圣杯布局 -->
     <!-- <style>
         #container {
@@ -154,7 +151,6 @@
         <p class="left">我是左边</p>
         <p class="right">我是右边</p>
     </div> -->
-    
 
     <!-- <style>
         .far{
@@ -189,14 +185,13 @@
         <div class="middle"></div>
     </div> -->
 
-
     <!-- NOTE: 其他布局方式 -->
     <!-- NOTE: 1. 垂直水平居中 -->
     <!-- 1. left + top + translate -->
     <!-- 2. 绝对定位 -->
     <style>
-        /* NOTE: first methods */
-        /* div{
+      /* NOTE: first methods */
+      /* div{
             position: absolute;
             top: 0;
             left: 0;
@@ -208,8 +203,8 @@
             background-color: red;
         } */
 
-        /* NOTE: second methods */
-        /* div{
+      /* NOTE: second methods */
+      /* div{
             position: absolute;
             top: 50%;
             left: 50%;
@@ -220,8 +215,8 @@
             background-color: red;
         } */
 
-        /* NOTE: flex */
-        /* body{
+      /* NOTE: flex */
+      /* body{
             width: 100vw;
             height: 100vh;
             display: flex;
@@ -235,7 +230,6 @@
         } */
     </style>
     <!-- <div></div> -->
-
 
     <!-- NOTE: grid -->
     <!-- <style>
@@ -277,21 +271,38 @@
         <div class="children-box">111111</div>
     </div> -->
 
-
     <!-- NOTE: FLEX变异 -->
-    <style>
-        .box {
-            width: 200px;
-            height: 200px;
-            border: 1px solid red;
-            display: flex;
-        }
-        .children-box {
-            background: yellow;
-        }
+    <!-- <style>
+      .box {
+        width: 200px;
+        height: 200px;
+        border: 1px solid red;
+        display: flex;
+      }
+      .children-box {
+        background: yellow;
+      }
     </style>
     <div class="box">
-        <div class="children-box">111111</div>
+      <div class="children-box">111111</div>
+    </div> -->
+
+    <style>
+      .father {
+        width: 300px;
+        background-color: red;
+        overflow: hidden;
+      }
+
+      .child {
+        float: left;
+        height: 100px;
+        width: 200px;
+        background-color: aqua;
+      }
+    </style>
+    <div class="father">
+      <div class="child"></div>
     </div>
-</body>
+  </body>
 </html>

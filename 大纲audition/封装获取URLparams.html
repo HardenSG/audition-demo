@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+
+  <!-- <script>
+    const loca =
+      "https://www.baidu.com?query=为什么url要进行utf16的转换&name=闫德强&age=21&magor=software_engineer";
+    //// 1. 使用切分split
+    ~(function splitUrlParams(location) {
+      let res = {};
+      const paramsStr = location.split("?")[1];
+      /** split
+       * const paramsList = paramsStr.split("&");
+       * paramsList.forEach((v_) => {
+       *    const [k, v] = v_.split("=");
+       *    res[k] = v;
+       * });
+       * console.log(res);
+       */
+
+      /**
+       * res = Object.fromEntries(new URLSearchParams(paramsStr));
+       * console.log(res);
+       */
+
+      /**
+       * 正则表达式
+       */
+
+      /**
+       * qs
+       */
+    })(loca);
+  </script> -->
+
+  <script>
+    ~(function () {
+      //   const url = window.location.href;
+      const url =
+        "file:///C:/Users/yandeqiang/Desktop/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/RESOURCE/%E5%A4%A7%E7%BA%B2audition/%E5%B0%81%E8%A3%85%E8%8E%B7%E5%8F%96URLparams.html?name=%E9%97%AB%E5%BE%B7%E5%BC%BA&age=21";
+      function getUrlParams(url) {
+        const _url = url || "";
+        const res = {};
+        if (url === "") return res;
+        const params =
+          url.indexOf("?") > -1 ? url.split("?")[1].split("&") : [];
+        params.forEach((v) => {
+          let [k, _v] = v.split("=");
+          _v = decodeURIComponent(_v);
+          res[k] = _v;
+        });
+        return res;
+      }
+
+      function setUrlParams(params, url) {
+        if (!params && !Object.keys(params).length) return url;
+        if (url === "" || !url) return "";
+
+        let _url = url;
+        const isHasParams = _url.indexOf("?") > -1;
+        if (isHasParams) {
+          params = Object.assign({}, { ...params, ...getUrlParams(url) });
+          _url = _url.split("?")[0];
+        }
+
+        let res = _url + "?";
+        Object.keys(params).forEach((v) => {
+          const _v = params[v];
+          if (_v !== undefined && _v !== null) {
+            res += `${v}=${_v}&`;
+          }
+        });
+        return res.slice(0, -1);
+      }
+      const newUrl = setUrlParams(
+        {
+          major: "Software_Engineer",
+          company: "北京字节跳动有效公司",
+        },
+        url
+      );
+    })();
+  </script>
+</html>
