@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    /* 单行 */
+    /* div {
+      width: 500px;
+      height: 200px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    } */
+    p {
+      margin: 0;
+    }
+
+    /* 多行 */
+    div {
+      width: 300px;
+      /* height: 100px; */
+      display: -webkit-box;
+      overflow: hidden;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      text-overflow: ellipsis;
+    }
+  </style>
+  <body>
+    <div>
+      . 若需要创建相同的 Symbol 变量则需要使用 Symbol.for若需要创建相同的 Symbol
+      变量则需要使用 Symbol.for 并提供描述的字符或者对象（对象则会调用
+      toString（）方法），该方法会在全局注册表中进行该符号的注册，下次使用
+      Symbol.for（）创建相同的描述的时候会返回相同的 symbol 变量，===为 true
+    </div>
+  </body>
+</html>
