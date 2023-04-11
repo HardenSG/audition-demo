@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    #app {
+      height: auto;
+      width: 500px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .child {
+      display: flex;
+    }
+
+    .h,
+    .m,
+    .s {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 150px;
+      border: 2px dashed black;
+      flex: 1;
+      background-color: aqua;
+
+      font-size: 40px;
+    }
+  </style>
+  <body>
+    <div id="app">
+      <h1>秒杀</h1>
+      <div class="child">
+        <div class="h"></div>
+        <div class="m"></div>
+        <div class="s"></div>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    const h = document.querySelector(".h");
+    const m = document.querySelector(".m");
+    const s = document.querySelector(".s");
+    const btn = document.querySelector("button");
+    const timeout = new Date(2023, 3, 11, 11, 28, 0);
+
+    const countHours = (timestamp) => Math.floor(timestamp / 1000 / 60 / 60);
+    const countMinutes = (timestamp) => Math.floor(timestamp / 1000 / 60);
+    const countSeconds = (timestamp) =>
+      Math.floor(timestamp / 1000) - countMinutes(timestamp) * 60;
+
+    function formatTime(timestamp) {
+      return {
+        h: countHours(timestamp),
+        m: countMinutes(timestamp),
+        s: countSeconds(timestamp),
+      };
+    }
+
+    const setElementText = (el, text) => (el.textContent = text);
+
+    function UpdateDom(hDOM, mDOM, sDOM) {
+      //// 可使用arguments进行自动赋值
+      return function ({ h, m, s }) {
+        setElementText(hDOM, h);
+        setElementText(mDOM, m);
+        setElementText(sDOM, s);
+      };
+    }
+
+    const countSpare = (timeout, nowTime, { Msg }) => {
+      const spareTime = timeout.getTime() - nowTime;
+      if (spareTime < 0) {
+        throw Error(Msg);
+      }
+
+      return spareTime;
+    };
+    /**
+     *  控制初始化
+     */
+    (function Init() {
+      const spareTime = countSpare(timeout, Date.now(), {
+        Msg: "【CAN'T SET THIS TIMEOUT, BECAUSE IS TOO SHORT】",
+      });
+      const $update = UpdateDom(h, m, s);
+
+      $update(formatTime(spareTime));
+
+      Scheduler($update);
+    })();
+
+    /**
+     *  控制时间更新
+     */
+    function Scheduler($update) {
+      setInterval(() => {
+        const spareTime = countSpare(timeout, Date.now(), {
+          Msg: "【TIMEOUT！】",
+        });
+        $update(formatTime(spareTime));
+      }, 1000);
+    }
+  </script>
+</html>
