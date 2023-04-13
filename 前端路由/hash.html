@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HASH 路由</title>
+  </head>
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      padding: 0;
+      width: 100vw;
+      height: 100vh;
+    }
+    #app {
+      width: 80vw;
+      height: 70vh;
+    }
+
+    nav {
+      display: flex;
+    }
+
+    a {
+      flex: 25%;
+      text-align: center;
+    }
+
+    #container {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+  <body>
+    <div id="app">
+      <nav>
+        <a href="#/index">首页</a>
+        <a href="#/hots">热点</a>
+        <a href="#/publish">发表</a>
+        <a href="#/my">我的</a>
+      </nav>
+      <div id="container"></div>
+    </div>
+
+    <script>
+      const getUrlHash = (url) =>
+        url.indexOf("#") >= 0 ? url.slice(url.indexOf("#") + 1) : "/";
+
+      class Router {
+        constructor(routes) {
+          this.routes = routes;
+          this.currentHash = "";
+          this.container = null;
+
+          this.BindEvent();
+        }
+
+        refresh(e) {
+          let newHash, oldHash;
+
+          if (e.newURL) {
+            //// 说明是hashchange
+            oldHash = getUrlHash(e.oldURL || "");
+            newHash = getUrlHash(e.newURL || "");
+          } else {
+            //// onload
+            newHash = getUrlHash(window.location.hash);
+          }
+
+          this.currentHash = newHash;
+          this.matchComponent();
+        }
+
+        mount(container) {
+          container = document.querySelector(container);
+
+          if (container) {
+            this.container = container;
+          } else {
+            throw TypeError("CAN'T RECEIVER PARAMS THAT NOT A DOM ELEMENT");
+          }
+        }
+
+        matchComponent() {
+          let curRoute = this.routes.find(
+            (route) => route.path === this.currentHash
+          );
+
+          if (!curRoute) {
+            //// default use the root path: /
+            curRoute = this.routes.find((route) => route.path === "/");
+
+            !curRoute &&
+              (() => {
+                throw Error("THIS PAGE NO FOUND");
+              })();
+          }
+
+          console.log(this.routes);
+
+          const { Component } = curRoute;
+          this.container.innerHTML = Component;
+        }
+
+        handleRefreshBefore(e) {
+          if (!this.container) {
+            throw Error("CAN'T CLICK ROUTE BEFORE MOUNTED");
+          }
+
+          return this.refresh(e);
+        }
+
+        BindEvent() {
+          window.addEventListener(
+            "load",
+            this.handleRefreshBefore.bind(this),
+            false
+          );
+          window.addEventListener(
+            "hashchange",
+            this.handleRefreshBefore.bind(this),
+            false
+          );
+        }
+      }
+
+      new Router([
+        {
+          path: "/",
+          name: "home",
+          Component: `
+            <div>默认</div>
+          `,
+        },
+        {
+          path: "/index",
+          name: "home",
+          Component: `
+            <div>我是首页</div>
+          `,
+        },
+        {
+          path: "/hots",
+          name: "hots",
+          Component: `
+            <div>我是热点</div>
+          `,
+        },
+        {
+          path: "/publish",
+          name: "essay",
+          Component: `
+            <div>我是发布</div>
+          `,
+        },
+        {
+          path: "/my",
+          name: "my",
+          Component: `
+            <div>我是个人</div>
+          `,
+        },
+      ]).mount("#container");
+    </script>
+  </body>
+</html>
