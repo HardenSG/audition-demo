@@ -1,0 +1,19 @@
+{
+  "name": "Data_Struct",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "ts-node-dev --respawn ./src"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "typescript": "^5.0.4"
+  },
+  "devDependencies": {
+    "@types/node": "^18.15.11",
+    "ts-node-dev": "^2.0.0"
+  }
+}

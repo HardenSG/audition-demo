@@ -48,25 +48,50 @@
     const m = document.querySelector(".m");
     const s = document.querySelector(".s");
     const btn = document.querySelector("button");
-    const timeout = new Date(2023, 3, 11, 11, 28, 0);
+    const timeout = new Date(2023, 3, 12, 9, 41, 0);
+    const HTransformToSec = 60 * 60;
+    const MTransformToSec = 60;
 
-    const countHours = (timestamp) => Math.floor(timestamp / 1000 / 60 / 60);
-    const countMinutes = (timestamp) => Math.floor(timestamp / 1000 / 60);
-    const countSeconds = (timestamp) =>
-      Math.floor(timestamp / 1000) - countMinutes(timestamp) * 60;
+    const countHours = (HTransformToSec) => {
+      return (timestamp) => {
+        return Math.floor(timestamp / 1000 / HTransformToSec);
+      };
+    };
+
+    const countMinutes = (MTransformToSec) => {
+      return (timestamp, spareH) => {
+        return (
+          Math.floor(timestamp / 1000 / MTransformToSec) -
+          spareH * MTransformToSec
+        );
+      };
+    };
+
+    const countSeconds = (HTransformToSec, MTransformToSec) => {
+      return (timestamp, spareH, spareM) => {
+        return (
+          Math.floor(timestamp / 1000) -
+          spareH * HTransformToSec -
+          spareM * MTransformToSec
+        );
+      };
+    };
 
     function formatTime(timestamp) {
+      const h = countHours(HTransformToSec)(timestamp);
+      const m = countMinutes(MTransformToSec)(timestamp, h);
+      const s = countSeconds(HTransformToSec, MTransformToSec)(timestamp, h, m);
       return {
-        h: countHours(timestamp),
-        m: countMinutes(timestamp),
-        s: countSeconds(timestamp),
+        h,
+        m,
+        s,
       };
     }
 
     const setElementText = (el, text) => (el.textContent = text);
 
     function UpdateDom(hDOM, mDOM, sDOM) {
-      //// 可使用arguments进行自动赋值
+      //// NOTE: 可使用arguments进行自动赋值
       return function ({ h, m, s }) {
         setElementText(hDOM, h);
         setElementText(mDOM, m);
@@ -82,6 +107,7 @@
 
       return spareTime;
     };
+
     /**
      *  控制初始化
      */
@@ -100,10 +126,16 @@
      *  控制时间更新
      */
     function Scheduler($update) {
-      setInterval(() => {
-        const spareTime = countSpare(timeout, Date.now(), {
-          Msg: "【TIMEOUT！】",
-        });
+      let spareTime;
+      const timer = setInterval(() => {
+        try {
+          spareTime = countSpare(timeout, Date.now(), {
+            Msg: "【TIMEOUT！】",
+          });
+        } catch (error) {
+          console.log(error);
+          clearInterval(timer);
+        }
         $update(formatTime(spareTime));
       }, 1000);
     }
