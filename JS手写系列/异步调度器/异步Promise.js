@@ -4,15 +4,15 @@
  */
 
 // const urls = [
-//   "https://upyun.hokori.online/2021-12-07/1638920676-9302-qr-code.png", // QQ群二维码
-//   "https://upyun.hokori.online/2021-11-26/1637931840-638128-littlef-alpha.gif", // 啃键盘动态图
-//   "https://upyun.hokori.online/2021-10-23/1634958891-996314-00fwfwhite-alphabg.png", // Logo白字透明底
-//   "https://upyun.hokori.online/2021-11-29/1638159552-936408-aare.png", // LogoPage背景图
-//   "https://upyun.hokori.online/2021-11-29/1638159719-557355-5c0080fe9e397d3325abcf93-hero-1.svg", // Introduce背景1
-//   "https://upyun.hokori.online/2021-11-29/1638159797-898696-5c001deda8e61a2c3ad905e5-hero-4.svg", // Introduce背景2
-//   "https://upyun.hokori.online/2021-11-29/1638159793-141341-5c00fa3ad82b40e853c9952f-hero-3.svg", // Introduce背景3
-//   "https://upyun.hokori.online/2021-11-29/1638159785-89032-5c00fa0eb8b0816e1a10dfe6-hero-2.svg", // Introduce背景4
-//   "https://upyun.hokori.online/2021-11-29/1638160006-70194-linth2.png", // Project背景图
+  "https://upyun.hokori.online/2021-12-07/1638920676-9302-qr-code.png", // QQ群二维码
+  "https://upyun.hokori.online/2021-11-26/1637931840-638128-littlef-alpha.gif", // 啃键盘动态图
+  "https://upyun.hokori.online/2021-10-23/1634958891-996314-00fwfwhite-alphabg.png", // Logo白字透明底
+  "https://upyun.hokori.online/2021-11-29/1638159552-936408-aare.png", // LogoPage背景图
+  "https://upyun.hokori.online/2021-11-29/1638159719-557355-5c0080fe9e397d3325abcf93-hero-1.svg", // Introduce背景1
+  "https://upyun.hokori.online/2021-11-29/1638159797-898696-5c001deda8e61a2c3ad905e5-hero-4.svg", // Introduce背景2
+  "https://upyun.hokori.online/2021-11-29/1638159793-141341-5c00fa3ad82b40e853c9952f-hero-3.svg", // Introduce背景3
+  "https://upyun.hokori.online/2021-11-29/1638159785-89032-5c00fa0eb8b0816e1a10dfe6-hero-2.svg", // Introduce背景4
+  "https://upyun.hokori.online/2021-11-29/1638160006-70194-linth2.png", // Project背景图
 // ];
 
 const urls = [
